@@ -44,6 +44,7 @@ class App extends React.Component {
   } 
   
   sendForSentimentAnalysis = () => {
+    console.log("here sendForSentimentAnalysis");
     this.setState({sentiment:true});
     let url = ".";
     let mode = this.state.mode
@@ -51,6 +52,7 @@ class App extends React.Component {
 
     fetch(url).then((response)=>{
         response.json().then((data)=>{
+            console.log(data);
         this.setState({sentimentOutput:data.label});
         let output = data.label;
         let color = "white"
@@ -66,14 +68,16 @@ class App extends React.Component {
   }
 
   sendForEmotionAnalysis = () => {
-
+    console.log("here sendForEmotionAnalysis");
     this.setState({sentiment:false});
     let url = ".";
     let mode = this.state.mode
     url = url+"/" + mode + "/emotion?"+ mode + "="+document.getElementById("textinput").value;
 
     fetch(url).then((response)=>{
+        
       response.json().then((data)=>{
+        console.log(data);
       this.setState({sentimentOutput:<EmotionTable emotions={data}/>});
   })})  ;
   }
